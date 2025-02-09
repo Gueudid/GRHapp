@@ -2,12 +2,12 @@
     "apps": [
         {
             "name": "Cool App",
-            "icon": "https://example.com/icon1.png",
+            "icon": "https://postimg.cc/nCyt2XVz",
             "downloadUrl": "https://example.com/coolapp.apk"
         },
         {
             "name": "Super Game",
-            "icon": "https://example.com/icon2.png",
+            "icon": "https://postimg.cc/nCyt2XVz",
             "downloadUrl": "https://example.com/supergame.apk"
         }
     ]
