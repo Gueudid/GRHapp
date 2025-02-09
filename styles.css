@@ -1,53 +1,54 @@
 body {
     font-family: Arial, sans-serif;
     background: #111;
-    color: #fff;
+    color: white;
+    margin: 0;
     text-align: center;
 }
 
-h1 {
-    margin-top: 20px;
-}
-
-#searchBox {
-    width: 80%;
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #222;
     padding: 10px;
-    margin: 10px 0;
-    font-size: 16px;
 }
 
-#appList {
+input {
+    padding: 5px;
+    width: 60%;
+}
+
+button {
+    background: #6200EA;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+nav {
+    display: none;
+    background: #333;
+    padding: 10px;
+}
+
+#app-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
-    padding: 20px;
+    margin-top: 20px;
 }
 
-.app-tile {
-    width: 150px;
+.app-card {
     background: #222;
     padding: 15px;
+    margin: 10px;
     border-radius: 10px;
-    text-align: center;
+    width: 250px;
 }
 
-.app-tile img {
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
-}
-
-.app-tile h3 {
-    font-size: 14px;
-    margin: 10px 0;
-}
-
-.app-tile a {
-    display: inline-block;
-    background: #007BFF;
-    color: #fff;
-    padding: 5px 10px;
-    text-decoration: none;
-    border-radius: 5px;
+.app-card img {
+    width: 50px;
+    height: 50px;
 }
