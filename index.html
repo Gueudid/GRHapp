@@ -4,90 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GRHapp Store</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: white;
-            text-align: center;
-        }
-        .app-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .app-tile {
-            background: #1e1e1e;
-            padding: 15px;
-            margin: 10px;
-            border-radius: 10px;
-            text-align: center;
-            width: 150px;
-        }
-        .app-tile img {
-            width: 100px;
-            height: 100px;
-            border-radius: 10px;
-        }
-        .download-btn {
-            display: block;
-            margin-top: 10px;
-            padding: 5px;
-            background: #6200ea;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-    <h1>GRHapp Store</h1>
-    <input type="text" id="search" placeholder="Поиск приложений..." oninput="searchApps()">
-    <div id="appList" class="app-container">Загрузка...</div>
 
-    <script>
-        const JSON_URL = "https://gueudid.github.io/GRHapp/appsandgames.json";
+    <!-- Верхняя панель -->
+    <header>
+        <h1>GRHapp Store</h1>
+        <input type="text" id="search" placeholder="Поиск приложений..." oninput="searchApps()">
+        <button onclick="toggleMenu()">☰</button>
+    </header>
 
-        async function loadApps() {
-            try {
-                const response = await fetch(JSON_URL);
-                if (!response.ok) {
-                    throw new Error(`Ошибка загрузки JSON: ${response.statusText}`);
-                }
-                const data = await response.json();
-                console.log("Данные JSON:", data);
-                renderApps(data.apps);
-            } catch (error) {
-                console.error("Ошибка:", error);
-                document.getElementById("appList").innerHTML = `<p style="color: red;">Ошибка загрузки данных: ${error.message}</p>`;
-            }
-        }
+    <!-- Меню -->
+    <nav id="menu">
+        <button onclick="login()">Войти через Google</button>
+        <button onclick="openSettings()">Настройки</button>
+    </nav>
 
-        function renderApps(apps) {
-            const container = document.getElementById("appList");
-            container.innerHTML = "";
-            apps.forEach(app => {
-                const appElement = document.createElement("div");
-                appElement.classList.add("app-tile");
-                appElement.innerHTML = `
-                    <img src="${app.icon}" alt="${app.name}">
-                    <h3>${app.name}</h3>
-                    <a href="${app.downloadUrl}" class="download-btn">Скачать</a>
-                `;
-                container.appendChild(appElement);
-            });
-        }
+    <!-- Список приложений -->
+    <main id="app-list"></main>
 
-        function searchApps() {
-            const query = document.getElementById("search").value.toLowerCase();
-            const tiles = document.querySelectorAll(".app-tile");
-            tiles.forEach(tile => {
-                const name = tile.querySelector("h3").textContent.toLowerCase();
-                tile.style.display = name.includes(query) ? "block" : "none";
-            });
-        }
-
-        document.addEventListener("DOMContentLoaded", loadApps);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
