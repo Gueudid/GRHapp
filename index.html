@@ -3,54 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Магазин приложений</title>
-    <style>
-        body { font-family: Arial, sans-serif; background: #f4f4f4; text-align: center; }
-        .app-container { max-width: 600px; margin: 20px auto; background: #fff; padding: 20px; border-radius: 10px; }
-        .app { display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #ddd; }
-        .app img { width: 50px; height: 50px; margin-right: 15px; border-radius: 10px; }
-        .app-info { flex-grow: 1; text-align: left; }
-        .app button { background: #28a745; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 5px; }
-        .app button:hover { background: #218838; }
-    </style>
+    <title>GRH Store</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <h1>GRH Store</h1>
+    <input type="text" id="searchBox" placeholder="Поиск приложений...">
+    <div id="appList">Загрузка...</div>
 
-    <h1>Магазин приложений</h1>
-    <div id="app-list" class="app-container">Загрузка...</div>
-
-    <script>
-        async function loadApps() {
-            const dropboxUrl = "https://www.dropbox.com/scl/fi/jegxcqa4mnm3wov2kmj6e/appsandgames.json?rlkey=lfkbwcv2795p5tdmc9s2svwce&st=p63s1eyk&dl=1"; // Замени на свою ссылку
-            try {
-                let response = await fetch(dropboxUrl);
-                let data = await response.json();
-                let appList = document.getElementById("app-list");
-                appList.innerHTML = "";
-
-                data.applications.forEach(app => {
-                    let appItem = document.createElement("div");
-                    appItem.classList.add("app");
-
-                    appItem.innerHTML = `
-                        <img src="${app.icon}" alt="${app.name}">
-                        <div class="app-info">
-                            <strong>${app.name}</strong>
-                            <p>${app.description}</p>
-                        </div>
-                        <a href="${app.url}" target="_blank"><button>Скачать</button></a>
-                    `;
-
-                    appList.appendChild(appItem);
-                });
-            } catch (error) {
-                document.getElementById("app-list").innerHTML = "Ошибка загрузки данных.";
-                console.error("Ошибка загрузки JSON:", error);
-            }
-        }
-
-        loadApps();
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
