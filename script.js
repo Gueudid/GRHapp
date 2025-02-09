@@ -1,52 +1,52 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const JSON_URL = "https://raw.githubusercontent.com/Gueudid/GRHapp/main/appsandgames.json";
-    const appListDiv = document.getElementById('appList');
-    const searchBox = document.getElementById('searchBox');
+document.addEventListener("DOMContentLoaded", loadApps);
 
-    async function loadApps() {
-        try {
-            let response = await fetch(JSON_URL);
-            if (!response.ok) throw new Error("Ошибка загрузки JSON");
-
-            let data = await response.json();
-            if (!data.apps || !Array.isArray(data.apps)) throw new Error("Некорректные данные");
-
-            displayApps(data.apps);
-        } catch (error) {
-            appListDiv.innerHTML = `<p style="color: red;">Ошибка: ${error.message}</p>`;
-        }
-    }
-
-    function displayApps(apps) {
-        appListDiv.innerHTML = "";
-        if (apps.length === 0) {
-            appListDiv.innerHTML = "<p>Приложения не найдены</p>";
-            return;
-        }
-
-        apps.forEach(app => {
-            const tile = document.createElement("div");
-            tile.classList.add("app-tile");
-
-            tile.innerHTML = `
-                <img src="${app.icon || 'https://via.placeholder.com/80'}" alt="${app.name}">
-                <h3>${app.name}</h3>
-                <a href="${app.downloadUrl}" target="_blank">Скачать</a>
-            `;
-
-            appListDiv.appendChild(tile);
-        });
-    }
-
-    searchBox.addEventListener("input", () => {
-        let query = searchBox.value.toLowerCase();
-        fetch(JSON_URL)
-            .then(res => res.json())
-            .then(data => {
-                let filtered = data.apps.filter(app => app.name.toLowerCase().includes(query));
-                displayApps(filtered);
+function loadApps() {
+    fetch("appsandgames.json")
+        .then(response => response.json())
+        .then(data => {
+            const appList = document.getElementById("app-list");
+            appList.innerHTML = "";
+            data.apps.forEach(app => {
+                const appCard = document.createElement("div");
+                appCard.classList.add("app-card");
+                appCard.innerHTML = `
+                    <img src="${app.icon}" alt="${app.name}">
+                    <h3>${app.name}</h3>
+                    <button onclick="openApp('${app.name}', '${app.downloadUrl}')">Скачать</button>
+                    <button onclick="showDetails('${app.name}')">О приложении</button>
+                `;
+                appList.appendChild(appCard);
             });
-    });
+        })
+        .catch(error => console.error("Ошибка загрузки приложений:", error));
+}
 
-    loadApps();
-});
+function openApp(name, url) {
+    window.open(url, "_blank");
+}
+
+function searchApps() {
+    const searchQuery = document.getElementById("search").value.toLowerCase();
+    const apps = document.querySelectorAll(".app-card");
+    apps.forEach(app => {
+        const title = app.querySelector("h3").textContent.toLowerCase();
+        app.style.display = title.includes(searchQuery) ? "block" : "none";
+    });
+}
+
+function toggleMenu() {
+    const menu = document.getElementById("menu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+function openSettings() {
+    alert("Раздел настроек в разработке!");
+}
+
+function login() {
+    alert("Авторизация через Google в разработке!");
+}
+
+function showDetails(name) {
+    alert(`Здесь будет описание ${name}`);
+}
