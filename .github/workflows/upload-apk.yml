@@ -1,0 +1,20 @@
+name: Upload APK to GitHub
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Upload APK to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "path/to/apk/*.apk"
+          tag: "latest"
+          token: ${{ secrets.GH_TOKEN }}
