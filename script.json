@@ -1,0 +1,40 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const JSON_URL = "https://raw.githubusercontent.com/Gueudid/GRHapp/main/appsandgames.json";
+    const appListDiv = document.getElementById("appList");
+    const searchBox = document.getElementById("searchBox");
+
+    fetch(JSON_URL)
+        .then(response => response.json())
+        .then(data => {
+            displayApps(data.apps);
+            searchBox.addEventListener("input", () => {
+                const query = searchBox.value.toLowerCase();
+                const filteredApps = data.apps.filter(app => app.name.toLowerCase().includes(query));
+                displayApps(filteredApps);
+            });
+        })
+        .catch(() => {
+            appListDiv.innerHTML = "<p>Ошибка загрузки данных</p>";
+        });
+
+    function displayApps(apps) {
+        appListDiv.innerHTML = "";
+        if (apps.length === 0) {
+            appListDiv.innerHTML = "<p>Приложения не найдены</p>";
+            return;
+        }
+
+        apps.forEach(app => {
+            const appDiv = document.createElement("div");
+            appDiv.classList.add("app-card");
+
+            appDiv.innerHTML = `
+                <img src="${app.icon}" class="app-icon" alt="${app.name}">
+                <p class="app-name">${app.name}</p>
+                <button class="download-btn" onclick="location.href='${app.downloadUrl}'">Скачать</button>
+            `;
+
+            appListDiv.appendChild(appDiv);
+        });
+    }
+});
