@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Простой магазин приложений</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 10px;
+    }
+    #searchBox {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    .app-item {
+      background: #fff;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .app-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0 0 5px;
+    }
+    .app-desc {
+      font-size: 14px;
+      margin: 0 0 8px;
+    }
+    .download-button {
+      display: inline-block;
+      background-color: #007bff;
+      color: #fff;
+      padding: 8px 12px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <input type="text" id="searchBox" placeholder="Поиск приложения...">
+  <div id="appList">Загрузка...</div>
+
+  <script>
+    // URL JSON с твоего репозитория
+    const JSON_URL = "https://raw.githubusercontent.com/Gueudid/GRHapp/main/appsandgames.json";
+    let apps = [];
+    const appListDiv = document.getElementById('appList');
+    const searchBox = document.getElementById('searchBox');
+
+    // Функция для отображения списка приложений
+    function displayApps(appsToDisplay) {
+      appListDiv.innerHTML = "";
+      if (appsToDisplay.length === 0) {
+        appListDiv.innerHTML = "<p>Приложения не найдены</p>";
+        return;
+      }
+      appsToDisplay.forEach(app => {
+        const div = document.createElement('div');
+        div.className = 'app-item';
+        div.innerHTML = `
+          <div class="app-title">${app.name}</div>
+          <div class="app-desc">${app.description}</div>
+          <a class="download-button" href="${app.download_url}" target="_blank">Скачать</a>
+        `;
+        appListDiv.appendChild(div);
+      });
+    }
+
+    // Загрузка JSON через fetch
+    fetch(JSON_URL)
+      .then(response => response.json())
+      .then(data => {
+        apps = data;
+        displayApps(apps);
+      })
+      .catch(err => {
+        console.error("Ошибка загрузки JSON:", err);
+        appListDiv.innerHTML = "<p>Ошибка загрузки данных</p>";
+      });
+
+    // Фильтрация по поисковому запросу
+    searchBox.addEventListener('input', function() {
+      const query = this.value.toLowerCase();
+      const filteredApps = apps.filter(app => {
+        return app.name.toLowerCase().includes(query) ||
+               app.description.toLowerCase().includes(query);
+      });
+      displayApps(filteredApps);
+    });
+  </script>
+
+</body>
+</html>
