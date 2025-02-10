@@ -1,0 +1,14 @@
+{
+    "apk_files": [
+        {
+            "name": "Файловый менеджер",
+            "file": "file_manager.apk",
+            "download_link": "https://example.com/file_manager.apk"
+        },
+        {
+            "name": "Файл который ты дал",
+            "file": "custom_file.apk",
+            "download_link": "https://example.com/custom_file.apk"
+        }
+    ]
+}
