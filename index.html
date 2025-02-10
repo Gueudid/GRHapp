@@ -3,28 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GRHapp Store</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <title>GRHapp</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-    <!-- Верхняя панель -->
-    <header>
-        <h1>GRHapp Store</h1>
-        <input type="text" id="search" placeholder="Поиск приложений..." oninput="searchApps()">
-        <button onclick="toggleMenu()">☰</button>
-    </header>
+<header>
+    <h1>GRHapp</h1>
+    <input type="text" id="searchInput" placeholder="🔍 Поиск приложений...">
+    <a href="settings.html">⚙️ Настройки</a>
+    <a href="upload.html">⬆️ Загрузить APK</a>
+</header>
 
-    <!-- Меню -->
-    <nav id="menu">
-        <button onclick="login()">Войти через Google</button>
-        <button onclick="openSettings()">Настройки</button>
-    </nav>
+<div id="appGrid"></div>
 
-    <!-- Список приложений -->
-    <main id="app-list"></main>
-
-    <script src="script.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
