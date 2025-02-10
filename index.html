@@ -3,20 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GRHapp</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>GRHapp - Магазин приложений</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
 </head>
 <body>
+    <header>
+        <h1>GRHapp</h1>
+        <input type="text" id="search" placeholder="Поиск приложений...">
+        <button onclick="openSettings()">⚙</button>
+    </header>
+    <main id="app-list"></main>
+    <footer>
+        <button onclick="openUpload()">Добавить APK</button>
+    </footer>
 
-<header>
-    <h1>GRHapp</h1>
-    <input type="text" id="searchInput" placeholder="🔍 Поиск приложений...">
-    <a href="settings.html">⚙️ Настройки</a>
-    <a href="upload.html">⬆️ Загрузить APK</a>
-</header>
+    <div id="upload-modal" class="modal">
+        <div class="modal-content">
+            <h2>Загрузка APK</h2>
+            <input type="file" id="apk-file">
+            <button onclick="uploadAPK()">Загрузить</button>
+            <button onclick="closeUpload()">Закрыть</button>
+        </div>
+    </div>
 
-<div id="appGrid"></div>
-
-<script src="js/main.js"></script>
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <h2>Настройки</h2>
+            <label><input type="checkbox" id="dark-mode"> Темная тема</label>
+            <button onclick="saveSettings()">Сохранить</button>
+            <button onclick="closeSettings()">Закрыть</button>
+        </div>
+    </div>
 </body>
 </html>
