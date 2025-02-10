@@ -1,23 +1,19 @@
-[
-  {
-    "name": "Приложение 1",
-    "description": "Описание приложения 1. Отличное приложение для работы и развлечений.",
-    "category": "Инструменты",
-    "image": "https://via.placeholder.com/250x150",
-    "downloadLink": "https://example.com/download/app1"
-  },
-  {
-    "name": "Приложение 2",
-    "description": "Описание приложения 2. Приложение для управления задачами.",
-    "category": "Продуктивность",
-    "image": "https://via.placeholder.com/250x150",
-    "downloadLink": "https://example.com/download/app2"
-  },
-  {
-    "name": "Приложение 3",
-    "description": "Описание приложения 3. Игра для развлечения.",
-    "category": "Игры",
-    "image": "https://via.placeholder.com/250x150",
-    "downloadLink": "https://example.com/download/app3"
-  }
-]
+{
+  "apps": [
+    {
+      "name": "Файловый менеджер",
+      "category": "Инструменты",
+      "file": "file_manager.apk"
+    },
+    {
+      "name": "Музыкальный плеер",
+      "category": "Медиа",
+      "file": "music_player.apk"
+    },
+    {
+      "name": "Игра: Битва героев",
+      "category": "Игры",
+      "file": "battle_heroes.apk"
+    }
+  ]
+}
