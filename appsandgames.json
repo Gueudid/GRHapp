@@ -1,9 +1,10 @@
-[
-    {
-        "id": "1",
-        "name": "Test App",
-        "icon": "images/app1.png",
-        "apk": "https://example.com/app1.apk",
-        "rating": 4.5
-    }
-]
+{
+    "apps": [
+        {
+            "name": "Пример приложения",
+            "icon": "https://example.com/icon.png",
+            "description": "Описание приложения",
+            "download": "https://example.com/app.apk"
+        }
+    ]
+}
