@@ -1,14 +1,9 @@
-{
-    "apps": [
-        {
-            "name": "Cool App",
-            "icon": "https://example.com/icon1.png",
-            "downloadUrl": "https://example.com/coolapp.apk"
-        },
-        {
-            "name": "Super Game",
-            "icon": "https://example.com/icon2.png",
-            "downloadUrl": "https://example.com/supergame.apk"
-        }
-    ]
-}
+[
+    {
+        "id": "1",
+        "name": "Test App",
+        "icon": "images/app1.png",
+        "apk": "https://example.com/app1.apk",
+        "rating": 4.5
+    }
+]
