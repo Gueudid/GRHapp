@@ -4,17 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Загрузка APK</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
+    <h2>Загрузите свой APK</h2>
+    <input type="text" id="appName" placeholder="Название приложения">
+    <input type="url" id="apkUrl" placeholder="Ссылка на APK">
+    <button onclick="uploadAPK()">Загрузить</button>
 
-<h2>Загрузить APK</h2>
-<form id="uploadForm">
-    <input type="text" id="appName" placeholder="Название приложения" required>
-    <input type="file" id="apkFile" accept=".apk" required>
-    <button type="submit">Загрузить</button>
-</form>
+    <script>
+        async function uploadAPK() {
+            const name = document.getElementById("appName").value;
+            const url = document.getElementById("apkUrl").value;
 
-<script src="js/upload.js"></script>
+            if (!name || !url) {
+                alert("Введите название и ссылку на APK!");
+                return;
+            }
+
+            const newApp = { name, url };
+
+            try {
+                const response = await fetch("upload.json");
+                const data = await response.json();
+                data.push(newApp);
+
+                await fetch("https://api.github.com/repos/Gueudid/GRHapp/contents/upload.json", {
+                    method: "PUT",
+                    headers: {
+                        "Authorization": "token YOUR_GITHUB_TOKEN",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        message: "Добавлено новое приложение",
+                        content: btoa(JSON.stringify(data, null, 2)),
+                        sha: await getFileSHA("upload.json")
+                    })
+                });
+
+                alert("APK загружен!");
+            } catch (error) {
+                console.error(error);
+                alert("Ошибка загрузки.");
+            }
+        }
+
+        async function getFileSHA(filename) {
+            const response = await fetch(`https://api.github.com/repos/Gueudid/GRHapp/contents/${filename}`);
+            const data = await response.json();
+            return data.sha;
+        }
+    </script>
 </body>
 </html>
