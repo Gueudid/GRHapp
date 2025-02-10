@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GRH Store</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marketplace - GRHapp</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>GRH Store</h1>
-    </header>
-    
-    <main>
-        <button class="btn" onclick="downloadApk('file1.apk')">📥 Скачать</button>
-        <button class="btn" onclick="openSettings()">⚙️ Настройки</button>
-        <button class="btn" onclick="showAuthors()">© Авторы</button>
-    </main>
-
-    <script src="script.js"></script>
+  <header>
+    <h1>Marketplace</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Главная</a></li>
+        <li><a href="#">Категории</a></li>
+        <li><a href="#">О нас</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <section class="search">
+      <input type="text" id="searchInput" placeholder="Поиск приложений..." oninput="filterApps()">
+    </section>
+    <section class="apps-list" id="appsList">
+      <!-- Здесь динамически будут отображаться карточки приложений -->
+    </section>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 Marketplace. Все права защищены.</p>
+  </footer>
+  
+  <script src="script.js"></script>
 </body>
 </html>
