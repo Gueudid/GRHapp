@@ -3,33 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GRHapp – Магазин приложений</title>
+    <title>GRHapp Store</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script defer src="script.js"></script>
 </head>
 <body>
+
     <header>
-        <h1>GRHapp</h1>
+        <h1>GRHapp Store</h1>
         <input type="text" id="search" placeholder="Поиск приложений...">
-        <button id="open-settings">⚙️</button>
+        <button onclick="openSettings()">⚙</button>
     </header>
 
     <main id="app-container">
         <p>Загрузка...</p>
     </main>
 
-    <!-- Меню настроек -->
-    <div id="settings-menu" class="hidden">
-        <h2>Настройки</h2>
-        <label>
-            <input type="checkbox" id="dark-mode">
-            Тёмная тема
-        </label>
-        <label>
-            <input type="checkbox" id="sort-by-rating">
-            Сортировать по рейтингу
-        </label>
-        <button id="close-settings">Закрыть</button>
+    <footer>
+        <button onclick="openUpload()">Добавить APK</button>
+    </footer>
+
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <h2>Настройки</h2>
+            <label>
+                <input type="checkbox" id="darkModeToggle"> Тёмная тема
+            </label>
+            <button onclick="closeSettings()">Закрыть</button>
+        </div>
     </div>
 
 </body>
