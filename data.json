@@ -1,14 +1,23 @@
-{
-    "apk_files": [
-        {
-            "name": "Файловый менеджер",
-            "file": "file_manager.apk",
-            "download_link": "https://example.com/file_manager.apk"
-        },
-        {
-            "name": "Файл который ты дал",
-            "file": "custom_file.apk",
-            "download_link": "https://example.com/custom_file.apk"
-        }
-    ]
-}
+[
+  {
+    "name": "Приложение 1",
+    "description": "Описание приложения 1. Отличное приложение для работы и развлечений.",
+    "category": "Инструменты",
+    "image": "https://via.placeholder.com/250x150",
+    "downloadLink": "https://example.com/download/app1"
+  },
+  {
+    "name": "Приложение 2",
+    "description": "Описание приложения 2. Приложение для управления задачами.",
+    "category": "Продуктивность",
+    "image": "https://via.placeholder.com/250x150",
+    "downloadLink": "https://example.com/download/app2"
+  },
+  {
+    "name": "Приложение 3",
+    "description": "Описание приложения 3. Игра для развлечения.",
+    "category": "Игры",
+    "image": "https://via.placeholder.com/250x150",
+    "downloadLink": "https://example.com/download/app3"
+  }
+]
