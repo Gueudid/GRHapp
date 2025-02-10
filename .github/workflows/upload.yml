@@ -1,0 +1,23 @@
+name: Update APK List
+
+on:
+  push:
+    paths:
+      - "upload.json"
+
+jobs:
+  update-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Commit New APK Data
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add upload.json
+          git commit -m "Добавлен новый APK"
+          git push
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
