@@ -3,44 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GRHapp</title>
-    <link rel="stylesheet" href="style.css">
+    <title>GRH Store</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <button id="menu-btn">☰</button>
-        <input type="text" id="search" placeholder="🔍 Поиск приложений...">
+        <h1>GRH Store</h1>
     </header>
-
-    <nav id="side-menu">
-        <button id="close-menu">×</button>
-        <ul>
-            <li><a href="#">🏠 Главная</a></li>
-            <li><a href="#">⚙️ Настройки</a></li>
-            <li><a href="#">📂 Мои APK</a></li>
-            <li><a href="#">📢 О приложении</a></li>
-        </ul>
-    </nav>
-
-    <main id="app-container">
-        <h2>Популярные приложения</h2>
-        <div class="grid">
-            <div class="tile">
-                <img src="icons/app1.png" alt="App 1">
-                <h3>App 1</h3>
-                <button class="download">⬇ Скачать</button>
-            </div>
-            <div class="tile">
-                <img src="icons/app2.png" alt="App 2">
-                <h3>App 2</h3>
-                <button class="download">⬇ Скачать</button>
-            </div>
-            <div class="tile">
-                <img src="icons/app3.png" alt="App 3">
-                <h3>App 3</h3>
-                <button class="download">⬇ Скачать</button>
-            </div>
-        </div>
+    
+    <main>
+        <button class="btn" onclick="downloadApk('file1.apk')">📥 Скачать</button>
+        <button class="btn" onclick="openSettings()">⚙️ Настройки</button>
+        <button class="btn" onclick="showAuthors()">© Авторы</button>
     </main>
 
     <script src="script.js"></script>
