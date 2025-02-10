@@ -1,37 +1,26 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Marketplace - GRHapp</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRH Store</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>Marketplace</h1>
-    <nav>
-      <ul>
-        <li><a href="#">Главная</a></li>
-        <li><a href="#">Категории</a></li>
-        <li><button class="about-btn" onclick="toggleAbout()">О нас</button></li>
-      </ul>
+    <header>
+        <button id="menuButton">☰</button>
+        <h1>GRH Store</h1>
+    </header>
+
+    <nav id="sidebar">
+        <button class="category" data-category="Все">Все</button>
+        <button class="category" data-category="Игры">Игры</button>
+        <button class="category" data-category="Инструменты">Инструменты</button>
+        <button class="category" data-category="Медиа">Медиа</button>
     </nav>
-  </header>
-  
-  <main>
-    <section class="search">
-      <input type="text" id="searchInput" placeholder="Поиск приложений..." oninput="filterApps()">
-    </section>
-    <section class="apps-list" id="appsList">
-      <!-- Здесь динамически будут отображаться карточки приложений -->
-    </section>
-    
-    <section class="about" id="aboutSection">
-      <h2>О нас</h2>
-      <p>Этот проект был создан GRH.</p>
-    </section>
-  </main>
-  
-  <script src="script.js"></script>
+
+    <main id="appList"></main>
+
+    <script src="script.js"></script>
 </body>
 </html>
