@@ -1,18 +1,9 @@
-function loadSettings() {
-    let theme = localStorage.getItem("theme") || "light";
-    document.body.classList.toggle("dark-theme", theme === "dark");
-
-    let sort = localStorage.getItem("sort") || "name";
-    document.getElementById("sortSelect").value = sort;
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
 }
 
-function saveSettings() {
-    localStorage.setItem("theme", document.getElementById("themeToggle").checked ? "dark" : "light");
-    localStorage.setItem("sort", document.getElementById("sortSelect").value);
-    loadSettings();
+// Проверяем сохраненные настройки
+if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark-mode');
 }
-
-document.getElementById("themeToggle").addEventListener("change", saveSettings);
-document.getElementById("sortSelect").addEventListener("change", saveSettings);
-
-window.onload = loadSettings;
