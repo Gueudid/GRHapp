@@ -1,19 +1,19 @@
 {
-  "apps": [
-    {
-      "name": "Файловый менеджер",
-      "category": "Инструменты",
-      "file": "file_manager.apk"
-    },
-    {
-      "name": "Музыкальный плеер",
-      "category": "Медиа",
-      "file": "music_player.apk"
-    },
-    {
-      "name": "Игра: minecraft2d",
-      "category": "Игры",
-      "file": "https://www.dropbox.com/scl/fi/kefqypcivkcc4c04qts5w/2.apk?rlkey=taaaa0uc167s9rynakdky9gfl&st=8zel5qbq&dl=1"
-    }
-  ]
+    "apps": [
+        {
+            "id": "1",
+            "name": "Файловый менеджер",
+            "category": "Инструменты",
+            "size": "20 MB",
+            "img": "file_manager.png",
+            "description": "Лучший файловый менеджер для Android.",
+            "version": "1.2.3",
+            "developer": "GRH Team",
+            "screenshots": [
+                "screenshot1.png",
+                "screenshot2.png"
+            ],
+            "download": "file_manager.apk"
+        }
+    ]
 }
