@@ -4,23 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Информация о приложении</title>
-    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1 id="appName">Название приложения</h1>
-        <p id="appVersion">Версия: </p>
-        <p id="appDescription">Описание...</p>
-        
-        <img id="appIcon" src="" alt="Иконка приложения">
-        
-        <p><strong>Последнее обновление:</strong> <span id="lastUpdate"></span></p>
-        <p><strong>Разработчик:</strong> <span id="developer"></span></p>
+        <!-- Иконка приложения -->
+        <img id="appIcon" class="app-icon" src="" alt="Иконка приложения">
 
+        <!-- Кнопка скачивания -->
+        <a id="downloadButton" href="#" class="btn-download">Скачать</a>
+
+        <!-- Скриншоты -->
         <h2>Скриншоты</h2>
-        <div id="screenshots"></div>
+        <div id="screenshots" class="screenshots-container"></div>
 
-        <a id="downloadButton" href="#" class="btn">Скачать</a>
+        <!-- Информация о приложении -->
+        <div class="app-info">
+            <h1 id="appName">Название приложения</h1>
+            <p id="appVersion"><strong>Версия:</strong> </p>
+            <p><strong>Последнее обновление:</strong> <span id="lastUpdate"></span></p>
+            <p><strong>Разработчик:</strong> <span id="developer"></span></p>
+            <p id="appDescription">Описание...</p>
+        </div>
     </div>
 
     <script src="about.js"></script>
