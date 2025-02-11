@@ -4,16 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GRH Store</title>
-    <link rel="stylesheet" href="index.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #121212;
+            color: white;
+        }
+
+        header {
+            background: #1e1e1e;
+            padding: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        #app-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .app-card {
+            background: #1e1e1e;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .app-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+        }
+
+        .app-card h3 {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .app-card:hover {
+            transform: scale(1.05);
+        }
+
+        .app-card a {
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+    </style>
 </head>
 <body>
+
     <header>
         <h1>GRH Store</h1>
-        <input type="text" id="search" placeholder="Поиск приложений...">
     </header>
-    <main id="app-list">
-        <!-- Здесь будут карточки приложений -->
-    </main>
-    <script src="index.js"></script>
+
+    <div id="app-list"></div>
+
+    <script>
+        fetch("data.json")
+            .then(response => response.json())
+            .then(data => {
+                let appList = document.getElementById("app-list");
+                appList.innerHTML = "";
+                data.apps.forEach(app => {
+                    let appCard = document.createElement("div");
+                    appCard.className = "app-card";
+                    appCard.innerHTML = `
+                        <a href="about.html?app=${encodeURIComponent(app.name)}">
+                            <img src="${app.icon}" alt="${app.name}">
+                            <h3>${app.name}</h3>
+                        </a>
+                    `;
+                    appList.appendChild(appCard);
+                });
+            })
+            .catch(error => console.error("Ошибка загрузки data.json:", error));
+    </script>
+
 </body>
 </html>
