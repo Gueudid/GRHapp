@@ -35,6 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("appVersion").textContent = `Версия: ${app.version}`;
             document.getElementById("appDescription").textContent = app.description;
             document.getElementById("appIcon").src = app.icon;
+            document.getElementById("lastUpdate").textContent = app.lastUpdate;
+            document.getElementById("developer").textContent = app.developer;
             
             // Добавляем скриншоты
             const screenshotsContainer = document.getElementById("screenshots");
