@@ -9,15 +9,23 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    fetch("data.json")
-        .then(response => response.json())
-        .then(data => {
-            const app = data.apps.find(item => item.id === appId);
+    console.log("Загружаем data.json...");
 
+    fetch("data.json")
+        .then(response => {
+            if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
+            return response.json();
+        })
+        .then(data => {
+            console.log("data.json загружен:", data);
+
+            const app = data.apps.find(item => item.id === appId);
             if (!app) {
-                console.error("Приложение не найдено в data.json");
+                console.error(`Приложение с ID "${appId}" не найдено.`);
                 return;
             }
+
+            console.log("Найденное приложение:", app);
 
             document.getElementById("appName").textContent = app.name;
             document.getElementById("appVersion").textContent = `Версия: ${app.version}`;
@@ -29,13 +37,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const screenshotsContainer = document.getElementById("screenshots");
             screenshotsContainer.innerHTML = "";
-
-            app.screenshots.forEach(src => {
-                let img = document.createElement("img");
-                img.src = src;
-                img.classList.add("screenshot");
-                screenshotsContainer.appendChild(img);
-            });
+            if (app.screenshots && app.screenshots.length > 0) {
+                app.screenshots.forEach(src => {
+                    let img = document.createElement("img");
+                    img.src = src;
+                    img.classList.add("screenshot");
+                    screenshotsContainer.appendChild(img);
+                });
+            } else {
+                screenshotsContainer.innerHTML = "<p>Нет скриншотов</p>";
+            }
         })
         .catch(error => console.error("Ошибка загрузки данных:", error));
 });
