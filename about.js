@@ -3,29 +3,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const urlParams = new URLSearchParams(window.location.search);
     const appId = urlParams.get("id");
+    console.log("ID приложения:", appId);
 
     if (!appId) {
         console.error("ID приложения не найден в URL");
         return;
     }
 
-    console.log("Загружаем data.json...");
-
-    fetch("data.json")
+    fetch("https://gueudid.github.io/GRHapp/data.json")
         .then(response => {
-            if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
+            console.log("Ответ от сервера:", response);
             return response.json();
         })
         .then(data => {
-            console.log("data.json загружен:", data);
-
+            console.log("Загруженные данные:", data);
             const app = data.apps.find(item => item.id === appId);
+            console.log("Найденное приложение:", app);
+
             if (!app) {
-                console.error(`Приложение с ID "${appId}" не найдено.`);
+                console.error("Приложение не найдено в data.json");
                 return;
             }
-
-            console.log("Найденное приложение:", app);
 
             document.getElementById("appName").textContent = app.name;
             document.getElementById("appVersion").textContent = `Версия: ${app.version}`;
@@ -37,16 +35,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const screenshotsContainer = document.getElementById("screenshots");
             screenshotsContainer.innerHTML = "";
-            if (app.screenshots && app.screenshots.length > 0) {
-                app.screenshots.forEach(src => {
-                    let img = document.createElement("img");
-                    img.src = src;
-                    img.classList.add("screenshot");
-                    screenshotsContainer.appendChild(img);
-                });
-            } else {
-                screenshotsContainer.innerHTML = "<p>Нет скриншотов</p>";
-            }
+
+            app.screenshots.forEach(src => {
+                let img = document.createElement("img");
+                img.src = src;
+                img.classList.add("screenshot");
+                screenshotsContainer.appendChild(img);
+            });
         })
         .catch(error => console.error("Ошибка загрузки данных:", error));
 });
