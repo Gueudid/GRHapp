@@ -4,23 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GRH Store</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <header>
-        <button id="menuButton">☰</button>
         <h1>GRH Store</h1>
+        <input type="text" id="search" placeholder="Поиск приложений...">
     </header>
-
-    <nav id="sidebar">
-        <button class="category" data-category="Все">Все</button>
-        <button class="category" data-category="Игры">Игры</button>
-        <button class="category" data-category="Инструменты">Инструменты</button>
-        <button class="category" data-category="Медиа">Медиа</button>
-    </nav>
-
-    <main id="appList"></main>
-
-    <script src="script.js"></script>
+    <main id="app-list">
+        <!-- Здесь будут карточки приложений -->
+    </main>
+    <script src="index.js"></script>
 </body>
 </html>
