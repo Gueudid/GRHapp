@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("about.js загружен");
 
     const urlParams = new URLSearchParams(window.location.search);
-    const appId = urlParams.get("ap");
+    const appId = urlParams.get("id");
     console.log("ID приложения:", appId);
 
     if (!appId) {
