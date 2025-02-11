@@ -1,71 +1,70 @@
-* {
-    box-sizing: border-box;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: white;
+    text-align: center;
     margin: 0;
     padding: 0;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #121212;
-    color: white;
-}
-
-header {
-    background: #1e1e1e;
-    padding: 15px;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-h1 {
-    margin: 0;
-    font-size: 24px;
-}
-
-#search {
-    width: 80%;
-    padding: 10px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 5px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#app-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px;
+.container {
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
     padding: 20px;
-    align-items: start;
 }
 
-.app-card {
+.app-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    margin: 20px auto;
+    display: block;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.btn-download {
+    display: block;
+    width: 80%;
+    max-width: 300px;
+    margin: 15px auto;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    background: linear-gradient(45deg, #ff6b6b, #ff4757);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-download:hover {
+    background: linear-gradient(45deg, #ff4757, #ff6b6b);
+}
+
+.screenshots-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.screenshots-container img {
+    width: 45%;
+    max-width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.app-info {
     background: #1e1e1e;
     padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    transition: transform 0.3s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    border-radius: 15px;
+    margin-top: 20px;
 }
 
-.app-card img {
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
-    object-fit: cover;
-}
-
-.app-card h3 {
-    font-size: 16px;
-    margin: 10px 0;
-}
-
-.app-card:hover {
-    transform: scale(1.05);
+.app-info h1 {
+    font-size: 22px;
+    margin-bottom: 10px;
 }
