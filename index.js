@@ -1,29 +1,33 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const appList = document.getElementById("app-list");
-    const searchInput = document.getElementById("search");
-
-    const apps = [
-        { name: "Приложение 1", icon: "icon1.png", link: "about.html" },
-        { name: "Приложение 2", icon: "icon2.png", link: "about.html" }
-    ];
-
-    function renderApps(filter = "") {
-        appList.innerHTML = "";
-        apps
-            .filter(app => app.name.toLowerCase().includes(filter.toLowerCase()))
-            .forEach(app => {
-                const appCard = document.createElement("div");
-                appCard.classList.add("app-card");
-                appCard.innerHTML = `
-                    <img src="${app.icon}" alt="${app.name}">
-                    <h3>${app.name}</h3>
-                `;
-                appCard.onclick = () => window.location.href = app.link;
-                appList.appendChild(appCard);
-            });
-    }
-
-    searchInput.addEventListener("input", () => renderApps(searchInput.value));
-
-    renderApps();
+    fetch("data.json")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Ошибка загрузки data.json");
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Данные загружены:", data);
+            renderApps(data.apps);
+        })
+        .catch(error => console.error("Ошибка загрузки JSON:", error));
 });
+
+function renderApps(apps) {
+    let container = document.getElementById("app-list");
+    container.innerHTML = "";
+
+    apps.forEach(app => {
+        let card = document.createElement("div");
+        card.classList.add("app-card");
+
+        card.innerHTML = `
+            <img src="${app.img}" alt="${app.name}">
+            <h3>${app.name}</h3>
+            <p>${app.description}</p>
+            <a href="${app.download}" class="download-btn">Скачать</a>
+        `;
+
+        container.appendChild(card);
+    });
+}
