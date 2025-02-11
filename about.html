@@ -3,27 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>О приложении</title>
-    <link rel="stylesheet" href="about.css">
+    <title>Информация о приложении</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <div class="app-header">
-            <img id="app-icon" src="icon.png" alt="Иконка приложения">
-            <div class="app-info">
-                <h1 id="app-name">Название приложения</h1>
-                <p id="app-version">Версия: 1.0.0</p>
-            </div>
-        </div>
-        <p class="description" id="app-description">Описание приложения будет здесь...</p>
+        <h1 id="appName">Название приложения</h1>
+        <p id="appVersion">Версия: </p>
+        <p id="appDescription">Описание...</p>
+        
+        <img id="appIcon" src="" alt="Иконка приложения">
         
         <h2>Скриншоты</h2>
-        <div class="screenshot-container">
-            <img src="screenshot1.jpg" alt="Скриншот 1">
-            <img src="screenshot2.jpg" alt="Скриншот 2">
-        </div>
+        <div id="screenshots"></div>
 
-        <a id="download-btn" class="download-button" href="#">Скачать</a>
+        <a id="downloadButton" href="#" class="btn">Скачать</a>
     </div>
+
+    <script src="about.js"></script>
 </body>
 </html>
