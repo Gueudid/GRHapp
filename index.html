@@ -4,91 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GRH Store</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #121212;
-            color: white;
-        }
-
-        header {
-            background: #1e1e1e;
-            padding: 15px;
-            text-align: center;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-
-        #app-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            padding: 20px;
-        }
-
-        .app-card {
-            background: #1e1e1e;
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .app-card img {
-            width: 80px;
-            height: 80px;
-            border-radius: 10px;
-        }
-
-        .app-card h3 {
-            font-size: 16px;
-            margin: 10px 0;
-        }
-
-        .app-card:hover {
-            transform: scale(1.05);
-        }
-
-        .app-card a {
-            text-decoration: none;
-            color: white;
-            display: block;
-        }
-    </style>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-
-    <header>
+    <div class="container">
         <h1>GRH Store</h1>
-    </header>
-
-    <div id="app-list"></div>
+        <input type="text" id="search" placeholder="Поиск приложений...">
+        
+        <div id="appList" class="app-grid"></div>
+    </div>
 
     <script>
-        fetch("data.json")
-            .then(response => response.json())
-            .then(data => {
-                let appList = document.getElementById("app-list");
-                appList.innerHTML = "";
-                data.apps.forEach(app => {
-                    let appCard = document.createElement("div");
-                    appCard.className = "app-card";
-                    appCard.innerHTML = `
-                        <a href="about.html?id=${encodeURIComponent(app.name)}">
-                            <img src="${app.icon}" alt="${app.name}">
-                            <h3>${app.name}</h3>
-                        </a>
-                    `;
-                    appList.appendChild(appCard);
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch('data.json')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.apps && data.apps.length > 0) {
+                        renderApps(data.apps);
+                    } else {
+                        document.getElementById("appList").innerHTML = "<p>Нет доступных приложений</p>";
+                    }
+                })
+                .catch(error => console.error("Ошибка загрузки данных:", error));
+        });
+
+        function renderApps(apps) {
+            const appList = document.getElementById("appList");
+            appList.innerHTML = "";
+
+            apps.forEach(app => {
+                const appElement = document.createElement("div");
+                appElement.classList.add("app-item");
+                appElement.innerHTML = `
+                    <img src="${app.icon || 'default-icon.png'}" alt="${app.name}">
+                    <h2>${app.name}</h2>
+                    <p>${app.category || 'Без категории'}</p>
+                    <a href="about.html?app=${encodeURIComponent(app.name)}">Подробнее</a>
+                `;
+                appList.appendChild(appElement);
+            });
+        }
+
+        document.getElementById("search").addEventListener("input", function (e) {
+            const query = e.target.value.toLowerCase();
+            fetch('data.json')
+                .then(response => response.json())
+                .then(data => {
+                    const filteredApps = data.apps.filter(app => app.name.toLowerCase().includes(query));
+                    renderApps(filteredApps);
                 });
-            })
-            .catch(error => console.error("Ошибка загрузки data.json:", error));
+        });
     </script>
 
+    <style>
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        .app-item {
+            background: #222;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .app-item img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
 </body>
 </html>
