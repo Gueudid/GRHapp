@@ -2,47 +2,22 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch("data.json")
         .then(response => response.json())
         .then(data => {
-            displayApps(data.apps);
+            const container = document.getElementById("app-container");
+            container.innerHTML = ""; // Очищаем перед добавлением
+
+            data.apps.forEach(app => {
+                const card = document.createElement("div");
+                card.classList.add("app-card");
+                card.innerHTML = `
+                    <img src="${app.icon}" alt="${app.name}" class="app-icon">
+                    <div class="app-info">
+                        <h3>${app.name}</h3>
+                        <p>${app.category || "Без категории"}</p>
+                        <a href="about.html?app=${encodeURIComponent(app.name)}">Подробнее</a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
         })
         .catch(error => console.error("Ошибка загрузки данных:", error));
 });
-
-function displayApps(apps) {
-    let appList = document.getElementById("app-list");
-    appList.innerHTML = "";
-
-    apps.forEach(app => {
-        let appCard = document.createElement("div");
-        appCard.classList.add("app-card");
-
-        let img = document.createElement("img");
-        img.src = app.icon ? app.icon : "placeholder.png";
-        img.alt = app.name;
-
-        let name = document.createElement("h3");
-        name.textContent = app.name;
-
-        let category = document.createElement("p");
-        category.textContent = app.category ? app.category : "Без категории";
-
-        let link = document.createElement("a");
-        link.href = `about.html?name=${encodeURIComponent(app.name)}`;
-        link.textContent = "Подробнее";
-
-        appCard.appendChild(img);
-        appCard.appendChild(name);
-        appCard.appendChild(category);
-        appCard.appendChild(link);
-        appList.appendChild(appCard);
-    });
-}
-
-function searchApps() {
-    let query = document.getElementById("search").value.toLowerCase();
-    fetch("data.json")
-        .then(response => response.json())
-        .then(data => {
-            let filteredApps = data.apps.filter(app => app.name.toLowerCase().includes(query));
-            displayApps(filteredApps);
-        });
-}
