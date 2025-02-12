@@ -3,51 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Информация о приложении</title>
-    <link rel="stylesheet" href="about.css">
+    <title>О приложении</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <img id="appIcon" src="icon.png" alt="Иконка приложения">
-        <h1 id="appName">Название приложения</h1>
-        <button id="downloadButton">Скачать</button>
-        
-        <h2>Скриншоты</h2>
-        <div id="screenshots"></div>
-        
-        <div class="info-box">
-            <h3>Информация</h3>
-            <p><strong>Версия:</strong> <span id="version">—</span></p>
-            <p><strong>Последнее обновление:</strong> <span id="update">—</span></p>
-            <p><strong>Разработчик:</strong> <span id="developer">—</span></p>
-            <p><strong>Описание:</strong> <span id="description">—</span></p>
-        </div>
-    </div>
+    <div id="app-info"></div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            fetch('data.json')
+        document.addEventListener("DOMContentLoaded", function () {
+            let urlParams = new URLSearchParams(window.location.search);
+            let appName = urlParams.get("name");
+
+            fetch("data.json")
                 .then(response => response.json())
                 .then(data => {
-                    const params = new URLSearchParams(window.location.search);
-                    const appName = params.get("app");
-
-                    if (data.apps && appName) {
-                        const appData = data.apps.find(app => app.name === appName);
-                        if (appData) {
-                            document.getElementById("appIcon").src = appData.icon || "default-icon.png";
-                            document.getElementById("appName").textContent = appData.name;
-                            document.getElementById("version").textContent = appData.version || "—";
-                            document.getElementById("update").textContent = appData.lastUpdate || "—";
-                            document.getElementById("developer").textContent = appData.developer || "—";
-                            document.getElementById("description").textContent = appData.description || "—";
-                            document.getElementById("downloadButton").onclick = () => window.location.href = appData.file;
-                        } else {
-                            alert("Приложение не найдено");
-                        }
+                    let app = data.apps.find(a => a.name === appName);
+                    if (app) {
+                        document.getElementById("app-info").innerHTML = `
+                            <h1>${app.name}</h1>
+                            <img src="${app.icon ? app.icon : 'placeholder.png'}" alt="${app.name}">
+                            <p><strong>Версия:</strong> ${app.version}</p>
+                            <p><strong>Последнее обновление:</strong> ${app.last_update}</p>
+                            <p><strong>Разработчик:</strong> ${app.developer}</p>
+                            <p><strong>Описание:</strong> ${app.description}</p>
+                            <a href="${app.file}" download>Скачать</a>
+                        `;
+                    } else {
+                        document.getElementById("app-info").innerHTML = "<p>Приложение не найдено.</p>";
                     }
-                })
-                .catch(error => console.error("Ошибка загрузки данных:", error));
+                });
         });
     </script>
 </body>
