@@ -1,33 +1,23 @@
-document.addEventListener('DOMContentLoaded', () => {
-    fetch('/data.json') // Абсолютный путь
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Ошибка загрузки: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Данные загружены:', data);
-            const container = document.getElementById('app-list');
+fetch("data.json")
+  .then((response) => response.json())
+  .then((data) => {
+    const container = document.getElementById("app-container");
 
-            if (!container) {
-                console.error('Контейнер app-list не найден!');
-                return;
-            }
+    data.apps.forEach((app) => {
+      const appElement = document.createElement("div");
+      appElement.classList.add("app");
 
-            let html = '';
-            data.apps.forEach(app => {
-                html += `
-                    <div class="app-card">
-                        <img src="${app.image || 'placeholder.png'}" alt="${app.name}">
-                        <h3>${app.name}</h3>
-                        <p>${app.description || 'Описание отсутствует'}</p>
-                        <a href="${app.file}" class="download-btn">Скачать</a>
-                    </div>
-                `;
-            });
+      // Проверяем наличие иконки, если нет — используем заглушку
+      const icon = app.icon ? app.icon : "placeholder.png";
 
-            container.innerHTML = html;
-        })
-        .catch(error => console.error('Ошибка:', error));
-});
+      appElement.innerHTML = `
+        <img src="${icon}" alt="${app.name}" class="app-icon">
+        <h2>${app.name}</h2>
+        <p>${app.description ? app.description : "Нет описания"}</p>
+        <a href="app.html?id=${app.id}">Подробнее</a>
+      `;
+
+      container.appendChild(appElement);
+    });
+  })
+  .catch((error) => console.error("Ошибка загрузки данных:", error));
