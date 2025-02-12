@@ -8,26 +8,47 @@
 </head>
 <body>
     <div class="container">
-        <!-- Иконка приложения -->
-        <img id="appIcon" class="app-icon" src="" alt="Иконка приложения">
-
-        <!-- Кнопка скачивания -->
-        <a id="downloadButton" href="#" class="btn-download">Скачать</a>
-
-        <!-- Скриншоты -->
+        <img id="appIcon" src="icon.png" alt="Иконка приложения">
+        <h1 id="appName">Название приложения</h1>
+        <button id="downloadButton">Скачать</button>
+        
         <h2>Скриншоты</h2>
-        <div id="screenshots" class="screenshots-container"></div>
-
-        <!-- Информация о приложении -->
-        <div class="app-info">
-            <h1 id="appName">Название приложения</h1>
-            <p id="appVersion"><strong>Версия:</strong> </p>
-            <p><strong>Последнее обновление:</strong> <span id="lastUpdate"></span></p>
-            <p><strong>Разработчик:</strong> <span id="developer"></span></p>
-            <p id="appDescription">Описание...</p>
+        <div id="screenshots"></div>
+        
+        <div class="info-box">
+            <h3>Информация</h3>
+            <p><strong>Версия:</strong> <span id="version">—</span></p>
+            <p><strong>Последнее обновление:</strong> <span id="update">—</span></p>
+            <p><strong>Разработчик:</strong> <span id="developer">—</span></p>
+            <p><strong>Описание:</strong> <span id="description">—</span></p>
         </div>
     </div>
 
-    <script src="about.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('data.json')
+                .then(response => response.json())
+                .then(data => {
+                    const params = new URLSearchParams(window.location.search);
+                    const appName = params.get("app");
+
+                    if (data.apps && appName) {
+                        const appData = data.apps.find(app => app.name === appName);
+                        if (appData) {
+                            document.getElementById("appIcon").src = appData.icon || "default-icon.png";
+                            document.getElementById("appName").textContent = appData.name;
+                            document.getElementById("version").textContent = appData.version || "—";
+                            document.getElementById("update").textContent = appData.lastUpdate || "—";
+                            document.getElementById("developer").textContent = appData.developer || "—";
+                            document.getElementById("description").textContent = appData.description || "—";
+                            document.getElementById("downloadButton").onclick = () => window.location.href = appData.file;
+                        } else {
+                            alert("Приложение не найдено");
+                        }
+                    }
+                })
+                .catch(error => console.error("Ошибка загрузки данных:", error));
+        });
+    </script>
 </body>
 </html>
