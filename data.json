@@ -1,0 +1,33 @@
+{
+  "apps": [
+    {
+      "id": "file_manager",
+      "name": "Файловый менеджер",
+      "category": "Инструменты",
+      "size": "20 MB",
+      "img": "file_manager.png",
+      "description": "Лучший файловый менеджер для Android.",
+      "version": "1.2.3",
+      "lastUpdate": "2025-02-10",
+      "developer": "GRH Team",
+      "screenshots": ["screenshot1.png", "screenshot2.png"],
+      "download": "file_manager.apk"
+    },
+    {
+      "id": "calculator",
+      "name": "Калькулятор",
+      "category": "Игры",
+      "size": "5 MB",
+      "img": "calculator.png",
+      "description": "Простой и удобный калькулятор.",
+      "version": "2.0.1",
+      "lastUpdate": "2025-01-15",
+      "developer": "GRH Team",
+      "website": "https://grhstore.com",
+      "androidVersion": "5.0 и выше",
+      "downloads": "50 000+",
+      "screenshots": ["calc1.png", "calc2.png"],
+      "download": "calculator.apk"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+/* Устанавливаем общий стиль для всей страницы */
+body {
+    background-color: #111; /* Темный фон */
+    color: white; /* Белый текст */
+    font-family: Arial, sans-serif; /* Основной шрифт */
+    text-align: center; /* Центрирование содержимого */
+}
+
+/* Стили для карточек приложений */
+.app-card {
+    background-color: #222; /* Темно-серый фон карточки */
+    padding: 15px; /* Внутренний отступ */
+    margin: 10px; /* Внешний отступ */
+    border-radius: 10px; /* Скругленные углы */
+}
+
+/* Стили для кнопок */
+button {
+    background-color: #333; /* Темно-серый цвет фона */
+    color: white; /* Белый текст */
+    border: none; /* Убираем рамку */
+    padding: 10px 15px; /* Внутренний отступ */
+    margin: 5px; /* Отступ между кнопками */
+    border-radius: 8px; /* Скругленные углы */
+    font-size: 16px; /* Размер шрифта */
+    transition: background 0.3s; /* Плавное изменение фона */
+}
+
+/* Изменение цвета кнопки при наведении */
+button:hover {
+    background-color: #555;
+}
+
+/* Изменение цвета кнопки при нажатии */
+button:active {
+    background-color: #777;
+}
+
+/* Стили для поисковой строки */
+input[type="text"] {
+    background-color: #111111;
+    color: white; /* Белый цвет
+    padding: 10px; /* Внутренний отступ */
+    margin: 10px; /* Внешний отступ */
+    border: none; /* Убираем рамку */
+    border-radius: 5px; /* Скругленные углы */
+    font-size: 16px; /* Размер шрифта */
+    width: 80%; /* Ширина 80% от контейнера */
+    max-width: 300px; /* Максимальная ширина 300px */
+}
