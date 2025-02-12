@@ -1,38 +1,32 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>О приложении</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Информация о приложении</title>
+  <link rel="stylesheet" href="about.css">
 </head>
 <body>
-    <div id="app-info"></div>
+  <div class="container">
+    <h1 id="appName">Название приложения</h1>
+    <img id="appIcon" class="app-icon" src="" alt="Иконка приложения">
+    <br>
+    <a id="downloadButton" class="btn-download" href="#">Скачать</a>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let urlParams = new URLSearchParams(window.location.search);
-            let appName = urlParams.get("name");
+    <h2>Скриншоты</h2>
+    <div id="screenshots" class="screenshots-container"></div>
 
-            fetch("data.json")
-                .then(response => response.json())
-                .then(data => {
-                    let app = data.apps.find(a => a.name === appName);
-                    if (app) {
-                        document.getElementById("app-info").innerHTML = `
-                            <h1>${app.name}</h1>
-                            <img src="${app.icon ? app.icon : 'placeholder.png'}" alt="${app.name}">
-                            <p><strong>Версия:</strong> ${app.version}</p>
-                            <p><strong>Последнее обновление:</strong> ${app.last_update}</p>
-                            <p><strong>Разработчик:</strong> ${app.developer}</p>
-                            <p><strong>Описание:</strong> ${app.description}</p>
-                            <a href="${app.file}" download>Скачать</a>
-                        `;
-                    } else {
-                        document.getElementById("app-info").innerHTML = "<p>Приложение не найдено.</p>";
-                    }
-                });
-        });
-    </script>
+    <h2>Информация</h2>
+    <div class="info-block">
+      <p><strong>Версия:</strong> <span id="appVersion">—</span></p>
+      <p><strong>Последнее обновление:</strong> <span id="lastUpdate">—</span></p>
+      <p><strong>Разработчик:</strong> <span id="developer">—</span></p>
+      <p><strong>Размер:</strong> <span id="appSize">—</span></p>
+      <p><strong>Описание:</strong> <span id="appDescription">—</span></p>
+    </div>
+  </div>
+
+  <!-- Подключаем отдельный файл about.js -->
+  <script src="about.js"></script>
 </body>
 </html>
