@@ -1,14 +1,10 @@
 {
-    "apps": [
-        {
-            "name": "Файловый менеджер",
-            "category": "Инструменты",
-            "icon": "file_manager.png",
-            "version": "1.0",
-            "last_update": "2025-02-11",
-            "developer": "Gueudid",
-            "description": "Простой и удобный файловый менеджер.",
-            "file": "file_manager.apk"
-        }
-    ]
+  "apps": [
+    {
+      "name": "Пример",
+      "category": "Инструменты",
+      "file": "file_manager.apk",
+      "icon": "icons/icon.png"
+    }
+  ]
 }
