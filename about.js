@@ -1,32 +1,43 @@
-document.addEventListener('DOMContentLoaded', () => {
-    fetch('/data.json') // Используем абсолютный путь
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Ошибка загрузки: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Данные загружены:', data);
-            const container = document.getElementById('about-content');
+const urlParams = new URLSearchParams(window.location.search);
+const appId = urlParams.get("id");
 
-            if (!container) {
-                console.error('Контейнер about-content не найден!');
-                return;
-            }
+fetch("data.json")
+  .then((response) => response.json())
+  .then((data) => {
+    const app = data.apps.find((app) => app.id === appId);
 
-            let html = '';
-            data.apps.forEach(app => {
-                html += `
-                    <div class="app-card">
-                        <img src="${app.image || 'placeholder.png'}" alt="${app.name}">
-                        <h3>${app.name}</h3>
-                        <p>${app.description || 'Описание отсутствует'}</p>
-                    </div>
-                `;
-            });
+    if (!app) {
+      document.getElementById("app-container").innerHTML =
+        "<h2>Приложение не найдено</h2>";
+      return;
+    }
 
-            container.innerHTML = html;
-        })
-        .catch(error => console.error('Ошибка:', error));
-});
+    // Проверяем иконку и скриншоты
+    const icon = app.icon ? app.icon : "placeholder.png";
+    const screenshots = app.screenshots ? app.screenshots : [];
+
+    document.getElementById("app-icon").src = icon;
+    document.getElementById("app-name").textContent = app.name;
+    document.getElementById("app-description").textContent =
+      app.description || "Нет описания";
+    document.getElementById("app-version").textContent = app.version || "—";
+    document.getElementById("app-developer").textContent =
+      app.developer || "Неизвестно";
+    document.getElementById("app-update").textContent =
+      app.lastUpdate || "—";
+    document.getElementById("app-download").href = app.file || "#";
+
+    // Если скриншотов нет, скрываем блок
+    const screenshotContainer = document.getElementById("app-screenshots");
+    if (screenshots.length > 0) {
+      screenshots.forEach((src) => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.classList.add("screenshot");
+        screenshotContainer.appendChild(img);
+      });
+    } else {
+      screenshotContainer.style.display = "none";
+    }
+  })
+  .catch((error) => console.error("Ошибка загрузки данных:", error));
