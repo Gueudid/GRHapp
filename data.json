@@ -2,19 +2,18 @@
   "apps": [
     {
       "id": "app1",
-      "name": "тест",
-      "version": "1.2.0",
-      "description": "Полное ие приложения...",
+      "name": "Название приложения",
+      "version": "1.0",
+      "description": "Полное описание...",
       "icon": "icons/app1.png",
-      "lastUpdate": "2675-02-11",
+      "lastUpdate": "2025-02-11",
       "developer": "Gueudid",
+      "size": "50 MB",
       "file": "apk/app1.apk",
       "screenshots": [
         "screenshots/screen1.jpg",
         "screenshots/screen2.jpg"
-      ],
-      "category": "инструменты"
-      "size": "50 MB"
+      ]
     }
   ]
 }
