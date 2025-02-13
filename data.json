@@ -1,0 +1,51 @@
+{
+    "apps": [
+        {
+            "name": "нагетс кликер",
+            "category": "Игры",
+            "description": "кликер где надо кликать нагетс.",
+            "size": "37,8MB",
+            "developer": "GRH Software",
+            "lastUpdate": "2025-02-12",
+            "downloads": "50",
+            "rating": "5.0",
+            "file": "https://www.dropbox.com/scl/fi/ht5r6wa1lr15lk2jo9syp/.apk?rlkey=1ucgosa3jqwgc9yxbmg0olnau&st=v2cjr1di&dl=1",
+            "screenshots": [
+                "https://www.dropbox.com/scl/fi/77vte4v4jw5x58v3df6od/Screenshot_2025-02-13-08-18-42-96_9ec2371a0c962dac8ba820a2e2b94047.jpg?rlkey=f8qn7nuhwspq4nttquyzupy70&st=m46femhe&dl=1"
+            ],
+            "icon": ""
+        },
+        {
+            "name": "майнкрафт2д",
+            "category": "Игры",
+            "description": "Увлекательная фигня с генерацией мира в реальном времени.",
+            "size": "40MB",
+            "developer": "GRH Software",
+            "lastUpdate": "2025-02-9",
+            "downloads": "250",
+            "rating": "4.7",
+            "file": "https://www.dropbox.com/scl/fi/kefqypcivkcc4c04qts5w/2.apk?rlkey=taaaa0uc167s9rynakdky9gfl&st=22sabsam&dl=1",
+            "screenshots": [
+                "https://www.dropbox.com/scl/fi/hadwgitclepsl0489fvbv/Screenshot_2025-02-13-08-22-51-47_98e5763cd1c691a9554e8589ff751cf2.jpg?rlkey=7lnlawas9l56eqvhfsdc3j8kq&st=u7ogjd38&dl=1",
+                "https://www.dropbox.com/scl/fi/b64akxt9yl03pou64rk0c/Screenshot_2025-02-13-08-23-07-02_98e5763cd1c691a9554e8589ff751cf2.jpg?rlkey=hmhqv79jkt2hjx75k4gycc4q3&st=iz73veng&dl=1"
+            ],
+            "icon": "https://www.dropbox.com/scl/fi/g8uhoinguov8mi3z5ob3p/.png?rlkey=bfukuuloem456sr1fdzct06pl&st=e73ut7j4&dl=1"
+        },
+        {
+            "name": "кликер",
+            "category": "Игры",
+            "description": "кликер на оочень старом движке работает плохо сайт кликера: https://sites.google.com/view/xstx-clicker/HOME",
+            "size": "18,3MB",
+            "developer": "GRH Software",
+            "lastUpdate": "2024-01-20",
+            "downloads": "150",
+            "rating": "4.0",
+            "file": "https://www.dropbox.com/scl/fi/7db30klwbc6w86ir3vzsf/.apk?rlkey=julxp3a5fe0glqm8i91rqclk0&st=i0zfxcg6&dl=1",
+            "screenshots": [
+                "https://www.dropbox.com/scl/fi/9tv5cg5bms61kbuboofbn/Screenshot_2025-02-13-08-38-56-28_f54afe79b31ed930e9b03d76f58d3a73.jpg?rlkey=pp4zz0bepcvfw1ai0m54b2iaj&st=ji1qdzmn&dl=1",
+                "https://www.dropbox.com/scl/fi/4b26ripn35a6gyxhvgquq/Screenshot_2025-02-13-08-39-08-56_f54afe79b31ed930e9b03d76f58d3a73.jpg?rlkey=ir7dd22b833ks4u0mndvmj6uu&st=g5ve3jcx&dl=1"
+            ],
+            "icon": "https://www.dropbox.com/scl/fi/x59626pyp792h0brx96cl/icon.png?rlkey=xvafn7h0palidf6moyxw8qixh&st=tu8fzqys&dl=1"
+        }
+    ]
+}

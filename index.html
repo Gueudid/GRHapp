@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRH Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>GRH Store</h1>
+        <input type="text" id="search" placeholder="Поиск..." oninput="searchApps()">
+    </header>
+
+    <nav>
+        <button onclick="filterCategory('Все')">Все</button>
+        <button onclick="filterCategory('Игры')">Игры</button>
+        <button onclick="filterCategory('Инструменты')">Инструменты</button>
+        <button onclick="filterCategory('Инструменты')">Взломки</button>
+    </nav>
+
+    <main id="app-list">
+        <!-- Приложения загружаются динамически -->
+    </main>
+
+    <footer>
+        <p>&copy; 2025 GRH Software. Все права защищены.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
