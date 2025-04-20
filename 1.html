@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Шуточный Вирус</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+        }
+        .virus-window {
+            position: absolute;
+            background-color: #111;
+            border: 2px solid #0f0;
+            padding: 10px;
+            color: #0f0;
+            box-shadow: 0 0 10px #0f0;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function createVirusWindow() {
+            const messages = [
+                "ВЗЛОМ СИСТЕМЫ! ХА-ХА, ШУЧУ!",
+                "ТВОЙ КОМП ТЕПЕРЬ МОЙ! 😈",
+                "ОШИБКА 404: СМЫСЛ ЖИЗНИ НЕ НАЙДЕН",
+                "НЕ НАЖИМАЙ НИЧЕГО, ВСЁ РАВНО ПОЗДНО!",
+                "ЭТО НЕ ВИРУС, ЭТО ЛЮБОВЬ! ❤️"
+            ];
+            const windowDiv = document.createElement('div');
+            windowDiv.className = 'virus-window';
+            windowDiv.innerText = messages[Math.floor(Math.random() * messages.length)];
+            windowDiv.style.left = Math.random() * (window.innerWidth - 200) + 'px';
+            windowDiv.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+            document.body.appendChild(windowDiv);
+            setTimeout(() => {
+                windowDiv.remove();
+            }, 3000);
+        }
+
+        // Создаём окна каждые 500 мс
+        setInterval(createVirusWindow, 500);
+
+        // Движение окон
+        setInterval(() => {
+            const windows = document.querySelectorAll('.virus-window');
+            windows.forEach(win => {
+                win.style.left = parseFloat(win.style.left) + (Math.random() - 0.5) * 50 + 'px';
+                win.style.top = parseFloat(win.style.top) + (Math.random() - 0.5) * 50 + 'px';
+            });
+        }, 100);
+    </script>
+</body>
+</html>
