@@ -2,54 +2,76 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Шуточный Вирус</title>
+    <title>Эпичный Шуточный Вирус</title>
     <style>
         body {
             background-color: #000;
             color: #0f0;
             font-family: 'Courier New', monospace;
             overflow: hidden;
+            margin: 0;
         }
         .virus-window {
             position: absolute;
-            background-color: #111;
+            background-color: rgba(0, 0, 0, 0.8);
             border: 2px solid #0f0;
             padding: 10px;
             color: #0f0;
-            box-shadow: 0 0 10px #0f0;
+            box-shadow: 0 0 15px #0f0;
+            cursor: pointer;
+            user-select: none;
         }
     </style>
 </head>
 <body>
+    <audio id="beepSound" src="https://www.soundjay.com/buttons/beep-01a.mp3"></audio>
     <script>
+        const messages = [
+            "СИСТЕМА ВЗЛОМАНА! ИЛИ НЕТ? 😜",
+            "ТВОЙ КОМП ТЕПЕРЬ ТАНЦУЕТ!",
+            "ОШИБКА: СЛИШКОМ МНОГО КРУТОСТИ!",
+            "ХАКЕРЫ ЛЮБЯТ ТЕБЯ! ❤️",
+            "ЭТО НЕ ВИРУС, ЭТО ВЕЧЕРИНКА!"
+        ];
+        const beep = document.getElementById('beepSound');
+
         function createVirusWindow() {
-            const messages = [
-                "ВЗЛОМ СИСТЕМЫ! ХА-ХА, ШУЧУ!",
-                "ТВОЙ КОМП ТЕПЕРЬ МОЙ! 😈",
-                "ОШИБКА 404: СМЫСЛ ЖИЗНИ НЕ НАЙДЕН",
-                "НЕ НАЖИМАЙ НИЧЕГО, ВСЁ РАВНО ПОЗДНО!",
-                "ЭТО НЕ ВИРУС, ЭТО ЛЮБОВЬ! ❤️"
-            ];
             const windowDiv = document.createElement('div');
             windowDiv.className = 'virus-window';
             windowDiv.innerText = messages[Math.floor(Math.random() * messages.length)];
             windowDiv.style.left = Math.random() * (window.innerWidth - 200) + 'px';
             windowDiv.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+            windowDiv.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            windowDiv.style.borderColor = windowDiv.style.color;
             document.body.appendChild(windowDiv);
+            beep.play().catch(() => {}); // Игнорируем ошибки автоплея
+            windowDiv.onclick = () => windowDiv.remove(); // Закрытие по клику
             setTimeout(() => {
-                windowDiv.remove();
-            }, 3000);
+                if (windowDiv.parentNode) windowDiv.remove();
+            }, 4000);
         }
 
-        // Создаём окна каждые 500 мс
-        setInterval(createVirusWindow, 500);
+        // Цветные вспышки фона
+        function flashBackground() {
+            document.body.style.backgroundColor = `hsl(${Math.random() * 360}, 50%, 10%)`;
+            setTimeout(() => {
+                document.body.style.backgroundColor = '#000';
+            }, 200);
+        }
+
+        // Создание окон и вспышки
+        setInterval(createVirusWindow, 400);
+        setInterval(flashBackground, 1000);
 
         // Движение окон
         setInterval(() => {
             const windows = document.querySelectorAll('.virus-window');
             windows.forEach(win => {
-                win.style.left = parseFloat(win.style.left) + (Math.random() - 0.5) * 50 + 'px';
-                win.style.top = parseFloat(win.style.top) + (Math.random() - 0.5) * 50 + 'px';
+                win.style.left = parseFloat(win.style.left) + (Math.random() - 0.5) * 60 + 'px';
+                win.style.top = parseFloat(win.style.top) + (Math.random() - 0.5) * 60 + 'px';
+                // Ограничение, чтобы окна не улетали за экран
+                win.style.left = Math.max(0, Math.min(parseFloat(win.style.left), window.innerWidth - 200)) + 'px';
+                win.style.top = Math.max(0, Math.min(parseFloat(win.style.top), window.innerHeight - 100)) + 'px';
             });
         }, 100);
     </script>
