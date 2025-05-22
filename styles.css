@@ -1,116 +1,280 @@
-/* === Общие стили для всех страниц === */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #121212; /* Темный фон */
-    color: #ffffff;
+/* === Общие стили === */
+:root {
+    --primary-color: #ff6600;
+    --primary-hover: #ff4500;
+    --dark-bg: #121212;
+    --card-bg: #1e1e1e;
+    --header-bg: #1a1a1a;
+    --text-color: #ffffff;
+    --text-secondary: #b0b0b0;
+    --success-color: #28a745;
+    --success-hover: #218838;
+}
+
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* Заголовок */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* === Header === */
 header {
-    background-color: #1f1f1f; /* Более светлый заголовок */
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    background-color: var(--header-bg);
+    padding: 1rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
 
 h1 {
-    font-size: 28px;
+    font-size: 2rem;
     margin: 0;
-    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-/* === Стили для главной страницы (index.html) === */
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
 
-/* Контейнер списка приложений */
+#search {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 2.5rem;
+    border-radius: 50px;
+    border: none;
+    background-color: #2a2a2a;
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+#search:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+/* === Navigation === */
+nav {
+    background-color: var(--header-bg);
+    padding: 0.5rem 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+nav button {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid #444;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+nav button:hover {
+    background-color: #333;
+    transform: none;
+}
+
+nav button.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* === Main Content === */
+main {
+    flex: 1;
+    padding: 2rem 0;
+}
+
 #app-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px; /* Увеличенный интервал между карточками */
-    padding: 20px;
+    gap: 1.5rem;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Карточка приложения */
 .app-card {
-    background-color: #2a2a2a; /* Увеличение контрастности */
-    border-radius: 15px; /* Более плавные углы */
-    padding: 15px;
-    width: 250px;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    width: 280px;
     text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Более заметная тень */
-    transition: transform 0.2s, box-shadow 0.2s; /* Добавлена анимация тени */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
 
 .app-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 30px rgba(255, 255, 255, 0.2); /* Тень при наведении */
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(255, 102, 0, 0.2);
 }
 
-/* Кнопки */
-button {
-    background-color: #ff6600;
-    color: #fff;
-    border: none;
-    padding: 12px 20px; /* Увеличенные отступы */
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold; /* Жирный текст */
-    transition: background 0.3s, transform 0.2s; /* Добавлена анимация */
+.app-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    object-fit: cover;
 }
 
-button:hover {
-    background-color: #ff4500;
-    transform: translateY(-2px); /* Плавное поднятие кнопки */
+.app-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
 }
 
-/* === Стили для страницы приложения (about.html) === */
-
-#app-info {
-    max-width: 600px;
-    margin: 20px auto;
-    background-color: #2a2a2a;
-    padding: 30px; /* Увеличенные отступы */
-    border-radius: 15px; /* Более плавные углы */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    text-align: center;
+.app-category {
+    background-color: #333;
+    color: var(--text-secondary);
+    padding: 0.2rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
 }
 
-/* Скриншоты */
-#screenshots {
+.app-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+}
+
+/* === Loading Spinner === */
+.loading-spinner {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 15px; /* Увеличенный интервал */
-    margin-top: 20px; /* Увеличенный отступ сверху */
+    gap: 1rem;
+    width: 100%;
+    padding: 2rem;
 }
 
-#screenshots img {
-    width: 120px; /* Увеличенная ширина изображений */
-    height: auto;
-    border-radius: 10px; /* Более плавные углы */
-    transition: transform 0.2s; /* Анимация при наведении */
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: spin 1s ease-in-out infinite;
 }
 
-#screenshots img:hover {
-    transform: scale(1.05); /* Увеличение изображения при наведении */
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
-/* Кнопка скачать */
+/* === Footer === */
+footer {
+    background-color: var(--header-bg);
+    padding: 1.5rem 0;
+    margin-top: auto;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+/* === Responsive Design === */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .app-card {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+
+/* === Buttons === */
+button, .download-btn {
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+}
+
 .download-btn {
-    display: inline-block;
-    background-color: #008000;
+    background-color: var(--success-color);
     color: white;
-    padding: 12px 25px; /* Увеличенные отступы */
-    border-radius: 5px;
-    margin-top: 20px;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
     text-decoration: none;
-    font-weight: bold; /* Жирный текст */
-    transition: background 0.3s, transform 0.2s; /* Добавлена анимация */
+    display: inline-block;
+    margin-top: 0.5rem;
 }
 
 .download-btn:hover {
-    background-color: #006400;
-    transform: translateY(-2px); /* Плавное поднятие кнопки */
-}
+    background-color: var(--success-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
